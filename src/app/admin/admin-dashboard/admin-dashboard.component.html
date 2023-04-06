@@ -1,0 +1,24 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row fxLayoutAlign="space-between center">
+    <a routerLink="/" fxLayoutAlign="center center" fxLayoutGap="10">
+      <img class="logo" src="./assets/angular-white-transparent.svg" alt="Angular">
+      <span>Admin Portal</span>
+    </a>
+    <ngx-avatars size="40" name="Admin Portal"></ngx-avatars>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<div fxLayout="row" fxLayout.lt-sm="column" fxFlexFill>
+  <nav>
+    <ul fxLayout="column" fxLayoutGap="15">
+      <li *ngFor="let item of nav" fxFlex="1" [class.active]="router.url === item.path">
+        <a mat-flat-button color="primary" [routerLink]="item.path">
+          {{ item.title }}
+        </a>
+      </li>
+    </ul>
+  </nav>
+  <main>
+    <router-outlet></router-outlet>
+  </main>
+</div>

@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { AuthService } from "../auth.service";
-import { MatSnackBar } from "@angular/material/snack-bar";
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
+
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-login',
@@ -16,8 +18,12 @@ export class LoginComponent {
     password: ['', Validators.required]
   });
 
-  constructor(private fb: FormBuilder, private authService: AuthService, private snackBar: MatSnackBar) {
-  }
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private router: Router,
+    private snackBar: MatSnackBar
+  ) {}
 
   get email() {
     return this.loginForm.get('email');
@@ -32,9 +38,9 @@ export class LoginComponent {
     this.authService.login(this.loginForm.getRawValue()).subscribe({
       next: (isValid) => {
         if (!isValid) {
-            this.showSnackBar('Neispravno korisničko ime ili lozinka. Pokušajte ponovo.');
+          this.showSnackBar('Neispravno korisničko ime ili lozinka. Pokušajte ponovo.');
         } else {
-          // redirect to admin dashboard
+          this.router.navigate(['/']);
         }
       },
       complete: () => {
