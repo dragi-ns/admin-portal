@@ -1,10 +1,18 @@
 <mat-toolbar color="primary">
   <mat-toolbar-row fxLayoutAlign="space-between center">
     <a routerLink="/" fxLayoutAlign="center center" fxLayoutGap="10">
-      <img class="logo" src="./assets/angular-white-transparent.svg" alt="Angular">
+      <img src="./assets/angular-white-transparent.svg" alt="Angular">
       <span>Admin Portal</span>
     </a>
-    <ngx-avatars size="40" name="Admin Portal"></ngx-avatars>
+    <button mat-icon-button [matMenuTriggerFor]="menu" class="avatar-menu">
+      <ngx-avatars size="40" name="Admin Portal"></ngx-avatars>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item (click)="logout()">
+        Logout
+      </button>
+    </mat-menu>
+
   </mat-toolbar-row>
 </mat-toolbar>
 

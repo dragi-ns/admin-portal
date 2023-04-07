@@ -11,6 +11,7 @@ import { AdminRoutingModule } from './admin-routing.module';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { UsersComponent } from './users/users.component';
 import { AppsComponent } from './apps/apps.component';
+import { MatMenuModule } from '@angular/material/menu';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { AppsComponent } from './apps/apps.component';
     MatButtonModule,
     FlexModule,
     HttpClientModule,
-    AvatarModule
+    AvatarModule,
+    MatMenuModule
   ],
 })
 export class AdminModule { }

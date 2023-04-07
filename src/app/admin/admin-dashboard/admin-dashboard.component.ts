@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
+import { AuthService } from '../../auth/auth.service';
+
 @Component({
   selector: 'app-admin-dashboard',
   templateUrl: './admin-dashboard.component.html',
@@ -18,6 +20,11 @@ export class AdminDashboardComponent {
     }
   ];
 
-  constructor(public router: Router) {
+  constructor(private authService: AuthService, public router: Router) {
+  }
+
+  logout() {
+    this.authService.logout();
+    this.router.navigate(['/login']);
   }
 }
