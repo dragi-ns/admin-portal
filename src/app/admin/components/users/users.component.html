@@ -1,0 +1,60 @@
+<div class="top-controls">
+  <button mat-flat-button color="primary" (click)="addUser()">Dodaj korisnika</button>
+</div>
+
+<div [hidden]="dataSource.data.length === 0">
+  <mat-table [dataSource]="dataSource" matSort>
+    <ng-container matColumnDef="firstName">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Ime</mat-header-cell>
+      <mat-cell *matCellDef="let user">{{user.firstName}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="lastName">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Prezime</mat-header-cell>
+      <mat-cell *matCellDef="let user">{{user.lastName}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="email">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>E-mail</mat-header-cell>
+      <mat-cell *matCellDef="let user">
+        <pre>{{user.email}}</pre>
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="password">
+      <mat-header-cell *matHeaderCellDef>Lozinka</mat-header-cell>
+      <mat-cell *matCellDef="let user">
+        <pre>{{ user.showPassword ? user.password : '********' }}</pre>
+
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <mat-header-cell *matHeaderCellDef>Kontrole</mat-header-cell>
+      <mat-cell *matCellDef="let user">
+        <button mat-icon-button (click)="user.showPassword = !user.showPassword">
+          <mat-icon>{{ !user.showPassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+        </button>
+
+        <button mat-icon-button (click)="editUser(user)">
+          <mat-icon>edit</mat-icon>
+        </button>
+
+        <button mat-icon-button (click)="deleteUser(user)">
+          <mat-icon color="warn">delete</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayColumns"></mat-header-row>
+    <mat-row *matRowDef="let user; columns: displayColumns"></mat-row>
+  </mat-table>
+  <mat-paginator [pageSizeOptions]="[10, 25, 50]"
+                 pageSize="10"
+                 showFirstLastButtons>
+  </mat-paginator>
+</div>
+
+<ng-container *ngIf="dataSource.data.length === 0">
+  <p class="no-users">Nema korisnika za prikaz.</p>
+</ng-container>

@@ -1,0 +1,144 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "firstName": "Oliver",
+      "lastName": "Smith",
+      "email": "oliver.smith@example.com",
+      "password": "G#xSj1$7tR2@"
+    },
+    {
+      "id": 3,
+      "firstName": "Noah",
+      "lastName": "Williams",
+      "email": "noah.williams@example.com",
+      "password": "W7%cF1^hR9@"
+    },
+    {
+      "id": 4,
+      "firstName": "Ava",
+      "lastName": "Jones",
+      "email": "ava.jones@example.com",
+      "password": "S2$hM7^fT0%"
+    },
+    {
+      "firstName": "Liam - Updated",
+      "lastName": "Brown - Updated",
+      "email": "liam.brown@updated.com",
+      "password": "easyguess",
+      "id": 5
+    },
+    {
+      "id": 6,
+      "firstName": "Sophia",
+      "lastName": "Davis",
+      "email": "sophia.davis@example.com",
+      "password": "T4%pV3#qS0!"
+    },
+    {
+      "id": 7,
+      "firstName": "Mason",
+      "lastName": "Miller",
+      "email": "mason.miller@example.com",
+      "password": "J8!tZ2$kF0#"
+    },
+    {
+      "id": 8,
+      "firstName": "Isabella",
+      "lastName": "Wilson",
+      "email": "isabella.wilson@example.com",
+      "password": "B3&rK1#pL9!"
+    },
+    {
+      "id": 9,
+      "firstName": "Ethan",
+      "lastName": "Moore",
+      "email": "ethan.moore@example.com",
+      "password": "F1@pK7$rH6#"
+    },
+    {
+      "id": 10,
+      "firstName": "Mia",
+      "lastName": "Taylor",
+      "email": "mia.taylor@example.com",
+      "password": "C9@hG2%kM0!"
+    },
+    {
+      "id": 11,
+      "firstName": "Lucas",
+      "lastName": "Anderson",
+      "email": "lucas.anderson@example.com",
+      "password": "R6$fT2#gM9!"
+    },
+    {
+      "id": 12,
+      "firstName": "Amelia",
+      "lastName": "Thomas",
+      "email": "amelia.thomas@example.com",
+      "password": "D5$pJ8!fK2#"
+    },
+    {
+      "id": 13,
+      "firstName": "Aiden",
+      "lastName": "Jackson",
+      "email": "aiden.jackson@example.com",
+      "password": "N0%rL7&jK3@"
+    },
+    {
+      "id": 14,
+      "firstName": "Charlotte",
+      "lastName": "White",
+      "email": "charlotte.white@example.com",
+      "password": "S5!dP9@jK2%"
+    },
+    {
+      "id": 15,
+      "firstName": "Logan",
+      "lastName": "Harris",
+      "email": "logan.harris@example.com",
+      "password": "D1%fT6#gM0!"
+    },
+    {
+      "id": 16,
+      "firstName": "Grace",
+      "lastName": "Martin",
+      "email": "grace.martin@example.com",
+      "password": "L4#hC1$jN8!"
+    },
+    {
+      "id": 17,
+      "firstName": "Jackson",
+      "lastName": "Lee",
+      "email": "jackson.lee@example.com",
+      "password": "M3!hF5$pK9@"
+    },
+    {
+      "id": 18,
+      "firstName": "Madison",
+      "lastName": "Clark",
+      "email": "madison.clark@example.com",
+      "password": "T2$pK7#gM1@"
+    },
+    {
+      "id": 19,
+      "firstName": "Jacob",
+      "lastName": "Rodriguez",
+      "email": "jacob.rodriguez@example.com",
+      "password": "H8%tN4#pL1!"
+    },
+    {
+      "id": 20,
+      "firstName": "Victoria",
+      "lastName": "Lewis",
+      "email": "victoria.lewis@example.com",
+      "password": "P5&jK2#dF0!"
+    },
+    {
+      "firstName": "Petar",
+      "lastName": "Petrović",
+      "email": "pera@pm.me",
+      "password": "password",
+      "id": 21
+    }
+  ]
+}

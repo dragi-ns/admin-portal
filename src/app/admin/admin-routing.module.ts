@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
-import { UsersComponent } from './users/users.component';
-import { AppsComponent } from './apps/apps.component';
+import { AdminDashboardComponent } from './admin-dashboard.component';
+import { UsersComponent } from './components/users/users.component';
+import { AppsComponent } from './components/apps/apps.component';
 import { authGuard } from '../auth/auth.guard';
 
 const routes: Routes = [
