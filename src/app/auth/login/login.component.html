@@ -1,23 +1,56 @@
 <div fxLayout="column" fxLayoutAlign="center center" fxFlexFill>
   <h2>Prijava</h2>
 
-  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" fxLayout="column" fxLayoutGap="10">
+  <form
+    [formGroup]="loginForm"
+    (ngSubmit)="onSubmit()"
+    fxLayout="column"
+    fxLayoutGap="10"
+  >
     <mat-form-field appearance="outline">
       <mat-label>Korisničko ime</mat-label>
-      <input matInput formControlName="email" id="email" name="email" placeholder="office@angular.com" required>
-      <mat-error *ngIf="email?.errors?.['required']">Korisničko ime je obavezno.</mat-error>
-      <mat-error *ngIf="email?.errors?.['email']">Korisničko ime mora biti ispravna e-mail adresa.</mat-error>
+      <input
+        matInput
+        formControlName="email"
+        id="email"
+        name="email"
+        placeholder="office@angular.com"
+        autofocus
+        required
+      />
+      <mat-error *ngIf="email?.errors?.['required']">
+        Korisničko ime je obavezno.
+      </mat-error>
+      <mat-error *ngIf="email?.errors?.['email']">
+        Korisničko ime mora biti ispravna e-mail adresa.
+      </mat-error>
     </mat-form-field>
 
     <mat-form-field appearance="outline">
       <mat-label>Lozinka</mat-label>
-      <input matInput [type]="hide ? 'password' : 'text'" formControlName="password" id="password" name="password" placeholder="*********" required>
+      <input
+        matInput
+        [type]="hide ? 'password' : 'text'"
+        formControlName="password"
+        id="password"
+        name="password"
+        placeholder="*********"
+        required
+      />
       <button type="button" mat-icon-button matSuffix (click)="hide = !hide">
-        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
       </button>
-      <mat-error *ngIf="password?.errors?.['required'] ">Lozinka je obavezna</mat-error>
+      <mat-error *ngIf="password?.errors?.['required']">
+        Lozinka je obavezna.
+      </mat-error>
     </mat-form-field>
 
-    <button mat-flat-button color="primary" [disabled]="!loginForm.valid || !loginForm.dirty || isLoading">{{ isLoading ? 'PRIJAVLJAIVANJE...' : 'PRIJAVA' }}</button>
+    <button
+      mat-flat-button
+      color="primary"
+      [disabled]="!loginForm.valid || !loginForm.dirty || isLoading"
+    >
+      {{ isLoading ? "PRIJAVLJAIVANJE..." : "PRIJAVA" }}
+    </button>
   </form>
 </div>

@@ -8,11 +8,14 @@
   font-weight: bold;
 }
 
+mat-cell:not(.mat-column-actions) {
+  overflow-x: auto;
+}
+
 .mat-column-email {
   flex: 0 0 25%;
 }
 
 .mat-column-actions {
-  flex: 0 0 15%;
   justify-content: center;
 }

@@ -48,6 +48,7 @@ export class UsersComponent implements OnInit, AfterViewInit {
   openUserDialog(user?: User) {
     const dialogRef = this.dialog.open(UserDialogComponent, {
       data: user,
+      autoFocus: '#firstName',
     });
 
     dialogRef.componentInstance.submitted.subscribe((formData) => {

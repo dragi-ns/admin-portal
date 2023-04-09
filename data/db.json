@@ -139,6 +139,14 @@
       "email": "pera@pm.me",
       "password": "password",
       "id": 21
+    },
+    {
+      "firstName": "Test",
+      "lastName": "Testić",
+      "email": "test@pm.me",
+      "password": "testing0",
+      "passwordConfirm": "testing0",
+      "id": 22
     }
   ]
 }

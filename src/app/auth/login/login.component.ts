@@ -8,14 +8,14 @@ import { AuthService } from '../auth.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
   isLoading = false;
   hide = true;
   loginForm: FormGroup = this.fb.group({
     email: ['', [Validators.required, Validators.email]],
-    password: ['', Validators.required]
+    password: ['', Validators.required],
   });
 
   constructor(
@@ -38,14 +38,16 @@ export class LoginComponent {
     this.authService.login(this.loginForm.getRawValue()).subscribe({
       next: (isValid) => {
         if (!isValid) {
-          this.showSnackBar('Neispravno korisničko ime ili lozinka. Pokušajte ponovo.');
+          this.showSnackBar(
+            'Neispravno korisničko ime ili lozinka. Pokušajte ponovo.'
+          );
         } else {
           this.router.navigate(['/']);
         }
       },
       complete: () => {
         this.isLoading = false;
-      }
+      },
     });
   }
 
@@ -53,7 +55,7 @@ export class LoginComponent {
     this.snackBar.open(message, action, {
       horizontalPosition: 'center',
       verticalPosition: 'top',
-      duration: 5000
+      duration: 5000,
     });
   }
 }
