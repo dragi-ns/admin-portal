@@ -43,6 +43,7 @@ export class UserDialogComponent {
     if (this.data) {
       this.userForm.patchValue(this.data);
       this.passwordConfirm?.setValue(this.data.password);
+      this.uniqueEmailValidator.originalEmail = this.data.email;
     }
   }
 
