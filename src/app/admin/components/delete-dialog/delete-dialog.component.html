@@ -1,0 +1,17 @@
+<h2 mat-dialog-title>Potvrda birsanja</h2>
+<mat-dialog-content class="mat-typography">
+  <p>Da li ste sigurni da želite da obrišete {{ data.message }}?</p>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-stroked-button color="primary" [mat-dialog-close]="false">
+    Otkaži
+  </button>
+  <button
+    mat-flat-button
+    color="warn"
+    [mat-dialog-close]="true"
+    cdkFocusInitial
+  >
+    Obriši
+  </button>
+</mat-dialog-actions>

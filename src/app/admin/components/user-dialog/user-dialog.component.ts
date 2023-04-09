@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component, EventEmitter, Inject, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
@@ -13,7 +13,9 @@ import { UniqueEmailValidator } from '../../validators/UniqueEmailValidator';
   styleUrls: ['./user-dialog.component.scss'],
 })
 export class UserDialogComponent {
+  @Output() submitted = new EventEmitter<User>();
   hide = true;
+  loading = false;
   userForm: FormGroup = this.fb.group(
     {
       firstName: [
@@ -65,5 +67,9 @@ export class UserDialogComponent {
 
   get passwordConfirm() {
     return this.userForm.get('passwordConfirm');
+  }
+
+  onSubmit() {
+    this.submitted.emit(this.userForm.getRawValue());
   }
 }

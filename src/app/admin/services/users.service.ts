@@ -21,9 +21,8 @@ export class UsersService {
   constructor(private http: HttpClient) {}
 
   getUsers(): Observable<User[]> {
-    return this.http
-      .get<User[]>(this.apiUrl)
-      .pipe(catchError(this.handleError));
+    const usersUrl = `${this.apiUrl}?_sort=id&_order=desc`;
+    return this.http.get<User[]>(usersUrl).pipe(catchError(this.handleError));
   }
 
   getUserByEmail(email: string): Observable<User | null> {
@@ -32,6 +31,24 @@ export class UsersService {
       map((users) => (users.length !== 0 ? users[0] : null)),
       catchError(this.handleError)
     );
+  }
+
+  addUser(userData: User): Observable<User> {
+    return this.http
+      .post<User>(this.apiUrl, userData, this.httpOptions)
+      .pipe(catchError(this.handleError));
+  }
+
+  editUser(id: string, userData: User): Observable<User> {
+    const userUrl = `${this.apiUrl}/${id}`;
+    return this.http
+      .put<User>(userUrl, userData, this.httpOptions)
+      .pipe(catchError(this.handleError));
+  }
+
+  deleteUser(id: string): Observable<void> {
+    const userUrl = `${this.apiUrl}/${id}`;
+    return this.http.delete<void>(userUrl).pipe(catchError(this.handleError));
   }
 
   // https://angular.io/guide/http#getting-error-details

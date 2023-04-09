@@ -10,7 +10,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
-import { MAT_DIALOG_DEFAULT_OPTIONS, MatDialogModule } from '@angular/material/dialog';
+import { MatDialogModule } from '@angular/material/dialog';
 import { FlexModule } from '@angular/flex-layout';
 import { AvatarModule } from 'ngx-avatars';
 
@@ -19,16 +19,15 @@ import { AdminDashboardComponent } from './admin-dashboard.component';
 import { UsersComponent } from './components/users/users.component';
 import { AppsComponent } from './components/apps/apps.component';
 import { UserDialogComponent } from './components/user-dialog/user-dialog.component';
+import { DeleteDialogComponent } from './components/delete-dialog/delete-dialog.component';
 
 @NgModule({
-  providers: [
-    { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { disableClose: true }}
-  ],
   declarations: [
     AdminDashboardComponent,
     UsersComponent,
     AppsComponent,
-    UserDialogComponent
+    UserDialogComponent,
+    DeleteDialogComponent,
   ],
   imports: [
     CommonModule,
@@ -48,4 +47,4 @@ import { UserDialogComponent } from './components/user-dialog/user-dialog.compon
     MatDialogModule,
   ],
 })
-export class AdminModule { }
+export class AdminModule {}

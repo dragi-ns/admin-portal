@@ -1,6 +1,12 @@
 <h2 mat-dialog-title>{{ data ? "Ažuriraj" : "Dodaj" }} korisnika</h2>
 <mat-dialog-content class="mat-typography">
-  <form [formGroup]="userForm" fxLayout="column" fxLayoutGap="10">
+  <form
+    id="userForm"
+    [formGroup]="userForm"
+    (ngSubmit)="onSubmit()"
+    fxLayout="column"
+    fxLayoutGap="10"
+  >
     <mat-form-field appearance="outline">
       <mat-label>Ime</mat-label>
       <input
@@ -122,10 +128,10 @@
   <button
     mat-flat-button
     color="primary"
-    [disabled]="!userForm.valid || !userForm.dirty"
-    [mat-dialog-close]="true"
+    [disabled]="!userForm.valid || !userForm.dirty || loading"
+    form="userForm"
     cdkFocusInitial
   >
-    {{ data ? "Ažuriraj" : "Dodaj" }}
+    {{ loading ? "Učitavanje..." : data ? "Ažuriraj" : "Dodaj" }}
   </button>
 </mat-dialog-actions>
