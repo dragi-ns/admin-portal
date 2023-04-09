@@ -28,8 +28,17 @@ export class UserDialogComponent {
       ],
       email: [
         '',
-        [Validators.required, Validators.email, Validators.maxLength(255)],
-        [this.uniqueEmailValidator.validate.bind(this.uniqueEmailValidator)],
+        {
+          validators: [
+            Validators.required,
+            Validators.email,
+            Validators.maxLength(255),
+          ],
+          asyncValidators: [
+            this.uniqueEmailValidator.validate.bind(this.uniqueEmailValidator),
+          ],
+          updateOn: 'blur',
+        },
       ],
       password: ['', [Validators.required, Validators.minLength(8)]],
       passwordConfirm: ['', Validators.required],
