@@ -1,10 +1,18 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
-import { MatTableDataSource } from '@angular/material/table';
+import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { finalize, map, tap } from 'rxjs';
+import {
+  catchError,
+  finalize,
+  map,
+  merge,
+  of,
+  startWith,
+  switchMap,
+  tap,
+} from 'rxjs';
 
 import { User } from '../../interfaces/user';
 import { UsersService } from '../../services/users.service';
@@ -16,12 +24,14 @@ import { DeleteDialogComponent } from '../delete-dialog/delete-dialog.component'
   templateUrl: './users.component.html',
   styleUrls: ['./users.component.scss'],
 })
-export class UsersComponent implements OnInit, AfterViewInit {
+export class UsersComponent implements AfterViewInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
+  data: User[] = [];
+  resultsLength = 0;
+  isLoadingResults = true;
   displayColumns = ['firstName', 'lastName', 'email', 'password', 'actions'];
-  dataSource = new MatTableDataSource<User>();
 
   constructor(
     private usersService: UsersService,
@@ -29,20 +39,37 @@ export class UsersComponent implements OnInit, AfterViewInit {
     private snackBar: MatSnackBar
   ) {}
 
-  ngOnInit() {
-    this.usersService
-      .getUsers()
-      .pipe(
-        map((users) => users.map((user) => ({ ...user, showPassword: false })))
-      )
-      .subscribe((users) => {
-        this.dataSource.data = users;
-      });
-  }
-
   ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
+    // If the user changes the sort order, reset back to the first page.
+    this.sort.sortChange.subscribe(() => (this.paginator.pageIndex = 0));
+
+    merge(this.sort.sortChange, this.paginator.page)
+      .pipe(
+        startWith({}),
+        switchMap(() => {
+          this.isLoadingResults = true;
+          return this.usersService
+            .getPaginatedUsers(
+              this.sort.active,
+              this.sort.direction,
+              this.paginator.pageSize,
+              this.paginator.pageIndex + 1
+            )
+            .pipe(catchError(() => of(null)));
+        }),
+        map((response) => {
+          this.isLoadingResults = false;
+
+          if (response === null) {
+            return [];
+          }
+
+          // Total number of users, json-server sets a header with X-Total-Count
+          this.resultsLength = Number(response.headers.get('X-Total-Count'));
+          return response.body!;
+        })
+      )
+      .subscribe((users) => (this.data = users));
   }
 
   openUserDialog(user?: User) {
@@ -111,8 +138,7 @@ export class UsersComponent implements OnInit, AfterViewInit {
   addUser(newUser: User) {
     return this.usersService.addUser(newUser).pipe(
       tap((user: User) => {
-        this.dataSource.data = [user, ...this.dataSource.data];
-        this.resetSort();
+        this.data = [user, ...this.data];
       })
     );
   }
@@ -120,9 +146,7 @@ export class UsersComponent implements OnInit, AfterViewInit {
   editUser(id: string, userData: User) {
     return this.usersService.editUser(id, userData).pipe(
       tap((user: User) => {
-        this.dataSource.data = this.dataSource.data.map((value) =>
-          value.id === id ? user : value
-        );
+        this.data = this.data.map((value) => (value.id === id ? user : value));
       })
     );
   }
@@ -130,15 +154,9 @@ export class UsersComponent implements OnInit, AfterViewInit {
   deleteUser(userId: string) {
     return this.usersService.deleteUser(userId).pipe(
       tap(() => {
-        this.dataSource.data = this.dataSource.data.filter(
-          (value) => value.id !== userId
-        );
+        this.data = this.data.filter((value) => value.id !== userId);
       })
     );
-  }
-
-  private resetSort() {
-    this.sort.sort({ id: '', start: 'asc', disableClear: false });
   }
 
   private showSnackBar(message: string, action: string = '') {

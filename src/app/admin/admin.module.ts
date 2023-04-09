@@ -20,6 +20,7 @@ import { UsersComponent } from './components/users/users.component';
 import { AppsComponent } from './components/apps/apps.component';
 import { UserDialogComponent } from './components/user-dialog/user-dialog.component';
 import { DeleteDialogComponent } from './components/delete-dialog/delete-dialog.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { DeleteDialogComponent } from './components/delete-dialog/delete-dialog.
     MatPaginatorModule,
     MatSortModule,
     MatDialogModule,
+    MatProgressSpinnerModule,
   ],
 })
 export class AdminModule {}

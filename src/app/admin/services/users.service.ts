@@ -3,9 +3,11 @@ import {
   HttpClient,
   HttpErrorResponse,
   HttpHeaders,
+  HttpResponse,
 } from '@angular/common/http';
 import { catchError, map, Observable, throwError } from 'rxjs';
 import { User } from '../interfaces/user';
+import { SortDirection } from '@angular/material/sort';
 
 @Injectable({
   providedIn: 'root',
@@ -23,6 +25,18 @@ export class UsersService {
   getUsers(): Observable<User[]> {
     const usersUrl = `${this.apiUrl}?_sort=id&_order=desc`;
     return this.http.get<User[]>(usersUrl).pipe(catchError(this.handleError));
+  }
+
+  getPaginatedUsers(
+    sort: string,
+    order: SortDirection,
+    limit: number,
+    page: number
+  ): Observable<HttpResponse<User[]>> {
+    const usersUrl = `${this.apiUrl}?_sort=${sort}&_order=${order}&_limit=${limit}&_page=${page}`;
+    return this.http
+      .get<User[]>(usersUrl, { ...this.httpOptions, observe: 'response' })
+      .pipe(catchError(this.handleError));
   }
 
   getUserByEmail(email: string): Observable<User | null> {

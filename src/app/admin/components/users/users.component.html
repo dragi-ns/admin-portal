@@ -4,8 +4,21 @@
   </button>
 </div>
 
-<div [hidden]="dataSource.data.length === 0">
-  <mat-table [dataSource]="dataSource" matSort>
+<div class="table-container" [hidden]="data.length === 0">
+  <div
+    class="loading-shade"
+    *ngIf="isLoadingResults"
+    fxLayoutAlign="center center"
+  >
+    <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+  </div>
+  <mat-table
+    [dataSource]="data"
+    matSort
+    matSortActive="id"
+    matSortDisableClear
+    matSortDirection="desc"
+  >
     <ng-container matColumnDef="firstName">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Ime</mat-header-cell>
       <mat-cell *matCellDef="let user">{{ user.firstName }}</mat-cell>
@@ -61,12 +74,12 @@
   </mat-table>
   <mat-paginator
     [pageSizeOptions]="[10, 25, 50]"
+    [length]="resultsLength"
     pageSize="10"
-    showFirstLastButtons
   >
   </mat-paginator>
 </div>
 
-<ng-container *ngIf="dataSource.data.length === 0">
+<ng-container *ngIf="data.length === 0">
   <p class="no-users">Nema korisnika za prikaz.</p>
 </ng-container>
