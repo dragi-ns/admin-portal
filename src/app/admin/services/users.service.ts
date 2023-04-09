@@ -1,10 +1,14 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
-import { catchError, Observable, throwError } from 'rxjs';
+import {
+  HttpClient,
+  HttpErrorResponse,
+  HttpHeaders,
+} from '@angular/common/http';
+import { catchError, map, Observable, throwError } from 'rxjs';
 import { User } from '../interfaces/user';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UsersService {
   private readonly apiUrl = 'http://localhost:3000/users';
@@ -14,12 +18,20 @@ export class UsersService {
     }),
   };
 
-  constructor(private http:HttpClient) {}
+  constructor(private http: HttpClient) {}
 
   getUsers(): Observable<User[]> {
     return this.http
       .get<User[]>(this.apiUrl)
       .pipe(catchError(this.handleError));
+  }
+
+  getUserByEmail(email: string): Observable<User | null> {
+    const userUrl = `${this.apiUrl}?email=${email}`;
+    return this.http.get<User[]>(userUrl).pipe(
+      map((users) => (users.length !== 0 ? users[0] : null)),
+      catchError(this.handleError)
+    );
   }
 
   // https://angular.io/guide/http#getting-error-details

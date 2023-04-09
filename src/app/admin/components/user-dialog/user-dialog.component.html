@@ -1,0 +1,131 @@
+<h2 mat-dialog-title>{{ data ? "Ažuriraj" : "Dodaj" }} korisnika</h2>
+<mat-dialog-content class="mat-typography">
+  <form [formGroup]="userForm" fxLayout="column" fxLayoutGap="10">
+    <mat-form-field appearance="outline">
+      <mat-label>Ime</mat-label>
+      <input
+        matInput
+        type="text"
+        id="firstName"
+        name="firstName"
+        placeholder="Petar"
+        formControlName="firstName"
+        required
+      />
+      <mat-error *ngIf="firstName?.errors?.['required']">
+        Ime je obavezno.
+      </mat-error>
+      <mat-error *ngIf="firstName?.errors?.['maxlength']">
+        Ime može imati najviše 20 karaktera.
+      </mat-error>
+      <mat-error *ngIf="firstName?.errors?.['alpha']">
+        Ime mora sadržati samo slova.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Prezime</mat-label>
+      <input
+        matInput
+        type="text"
+        id="lastName"
+        name="lastName"
+        placeholder="Petrović"
+        formControlName="lastName"
+        required
+      />
+      <mat-error *ngIf="lastName?.errors?.['required']">
+        Prezime je obavezno.
+      </mat-error>
+      <mat-error *ngIf="lastName?.errors?.['maxlength']">
+        Prezime može imati najviše 20 karaktera.
+      </mat-error>
+      <mat-error *ngIf="lastName?.errors?.['alpha']">
+        Prezime mora sadržati samo slova.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>E-mail</mat-label>
+      <input
+        matInput
+        type="email"
+        id="email"
+        name="email"
+        placeholder="pera@pm.me"
+        formControlName="email"
+        required
+      />
+      <mat-error *ngIf="email?.errors?.['required']">
+        E-mail adresa je obavezna.
+      </mat-error>
+      <mat-error *ngIf="email?.errors?.['email']">
+        E-mail adresa mora biti validna.
+      </mat-error>
+      <mat-error *ngIf="email?.errors?.['maxlength']">
+        E-mail adresa može imati najviše 255 karaktera.
+      </mat-error>
+      <mat-error *ngIf="email?.errors?.['uniqueEmail']">
+        E-mail adresa je već registrovana.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Lozinka</mat-label>
+      <input
+        matInput
+        [type]="hide ? 'password' : 'text'"
+        id="password"
+        name="password"
+        placeholder="*********"
+        formControlName="password"
+        required
+      />
+      <button type="button" mat-icon-button matSuffix (click)="hide = !hide">
+        <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+      </button>
+      <mat-error *ngIf="password?.errors?.['required']">
+        Lozinka je obavezna.
+      </mat-error>
+      <mat-error *ngIf="password?.errors?.['minlength']">
+        Lozinka mora imati bar 8 karaktera.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Potvrdi lozinku</mat-label>
+      <input
+        matInput
+        [type]="hide ? 'password' : 'text'"
+        id="passwordConfirm"
+        name="passwordConfirm"
+        placeholder="*********"
+        formControlName="passwordConfirm"
+        required
+      />
+      <button type="button" mat-icon-button matSuffix (click)="hide = !hide">
+        <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+      </button>
+      <mat-error *ngIf="passwordConfirm?.errors?.['required']">
+        Potvrda lozinke je obavezna.
+      </mat-error>
+      <mat-error *ngIf="passwordConfirm?.errors?.['mismatch']">
+        Lozinke moraju biti iste.
+      </mat-error>
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-stroked-button color="primary" [mat-dialog-close]="false">
+    Otkaži
+  </button>
+  <button
+    mat-flat-button
+    color="primary"
+    [disabled]="!userForm.valid || !userForm.dirty"
+    [mat-dialog-close]="true"
+    cdkFocusInitial
+  >
+    {{ data ? "Ažuriraj" : "Dodaj" }}
+  </button>
+</mat-dialog-actions>

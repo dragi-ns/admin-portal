@@ -1,42 +1,52 @@
 <div class="top-controls">
-  <button mat-flat-button color="primary" (click)="addUser()">Dodaj korisnika</button>
+  <button mat-flat-button color="primary" (click)="openUserDialog()">
+    Dodaj korisnika
+  </button>
 </div>
 
 <div [hidden]="dataSource.data.length === 0">
   <mat-table [dataSource]="dataSource" matSort>
     <ng-container matColumnDef="firstName">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Ime</mat-header-cell>
-      <mat-cell *matCellDef="let user">{{user.firstName}}</mat-cell>
+      <mat-cell *matCellDef="let user">{{ user.firstName }}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="lastName">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Prezime</mat-header-cell>
-      <mat-cell *matCellDef="let user">{{user.lastName}}</mat-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        Prezime
+      </mat-header-cell>
+      <mat-cell *matCellDef="let user">{{ user.lastName }}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="email">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>E-mail</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        E-mail
+      </mat-header-cell>
       <mat-cell *matCellDef="let user">
-        <pre>{{user.email}}</pre>
+        <pre>{{ user.email }}</pre>
       </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="password">
       <mat-header-cell *matHeaderCellDef>Lozinka</mat-header-cell>
       <mat-cell *matCellDef="let user">
-        <pre>{{ user.showPassword ? user.password : '********' }}</pre>
-
+        <pre>{{ user.showPassword ? user.password : "********" }}</pre>
       </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="actions">
       <mat-header-cell *matHeaderCellDef>Kontrole</mat-header-cell>
       <mat-cell *matCellDef="let user">
-        <button mat-icon-button (click)="user.showPassword = !user.showPassword">
-          <mat-icon>{{ !user.showPassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+        <button
+          mat-icon-button
+          (click)="user.showPassword = !user.showPassword"
+        >
+          <mat-icon>{{
+            !user.showPassword ? "visibility_off" : "visibility"
+          }}</mat-icon>
         </button>
 
-        <button mat-icon-button (click)="editUser(user)">
+        <button mat-icon-button (click)="openUserDialog(user)">
           <mat-icon>edit</mat-icon>
         </button>
 
@@ -49,9 +59,11 @@
     <mat-header-row *matHeaderRowDef="displayColumns"></mat-header-row>
     <mat-row *matRowDef="let user; columns: displayColumns"></mat-row>
   </mat-table>
-  <mat-paginator [pageSizeOptions]="[10, 25, 50]"
-                 pageSize="10"
-                 showFirstLastButtons>
+  <mat-paginator
+    [pageSizeOptions]="[10, 25, 50]"
+    pageSize="10"
+    showFirstLastButtons
+  >
   </mat-paginator>
 </div>
 

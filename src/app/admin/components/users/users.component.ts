@@ -6,11 +6,13 @@ import { map } from 'rxjs';
 
 import { User } from '../../interfaces/user';
 import { UsersService } from '../../services/users.service';
+import { MatDialog } from '@angular/material/dialog';
+import { UserDialogComponent } from '../user-dialog/user-dialog.component';
 
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
-  styleUrls: ['./users.component.scss']
+  styleUrls: ['./users.component.scss'],
 })
 export class UsersComponent implements OnInit, AfterViewInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -19,14 +21,20 @@ export class UsersComponent implements OnInit, AfterViewInit {
   displayColumns = ['firstName', 'lastName', 'email', 'password', 'actions'];
   dataSource = new MatTableDataSource<User>();
 
-  constructor(private usersService: UsersService) {}
+  constructor(
+    private usersService: UsersService,
+    private userDialog: MatDialog
+  ) {}
 
   ngOnInit() {
-    this.usersService.getUsers()
-      .pipe(map((users) => users.map((user) => ({...user, showPassword: false}))))
+    this.usersService
+      .getUsers()
+      .pipe(
+        map((users) => users.map((user) => ({ ...user, showPassword: false })))
+      )
       .subscribe((users) => {
         this.dataSource.data = users;
-    });
+      });
   }
 
   ngAfterViewInit() {
@@ -34,8 +42,10 @@ export class UsersComponent implements OnInit, AfterViewInit {
     this.dataSource.sort = this.sort;
   }
 
-  addUser() {
-    console.log('Add user');
+  openUserDialog(user?: User) {
+    const dialogRef = this.userDialog.open(UserDialogComponent, {
+      data: user,
+    });
   }
 
   editUser(user: User) {
