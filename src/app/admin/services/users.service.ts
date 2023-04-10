@@ -39,14 +39,14 @@ export class UsersService {
       .pipe(catchError(this.handleError));
   }
 
-  editUser(id: string, userData: User): Observable<User> {
+  editUser(id: number, userData: User): Observable<User> {
     const userUrl = `${this.apiUrl}/${id}`;
     return this.http
       .put<User>(userUrl, userData, this.httpOptions)
       .pipe(catchError(this.handleError));
   }
 
-  deleteUser(id: string): Observable<void> {
+  deleteUser(id: number): Observable<void> {
     const userUrl = `${this.apiUrl}/${id}`;
     return this.http.delete<void>(userUrl).pipe(catchError(this.handleError));
   }

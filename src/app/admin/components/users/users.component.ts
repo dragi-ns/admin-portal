@@ -117,7 +117,7 @@ export class UsersComponent implements OnInit, AfterViewInit {
     );
   }
 
-  editUser(id: string, userData: User) {
+  editUser(id: number, userData: User) {
     return this.usersService.editUser(id, userData).pipe(
       tap((user: User) => {
         this.dataSource.data = this.dataSource.data.map((value) =>
@@ -127,7 +127,7 @@ export class UsersComponent implements OnInit, AfterViewInit {
     );
   }
 
-  deleteUser(userId: string) {
+  deleteUser(userId: number) {
     return this.usersService.deleteUser(userId).pipe(
       tap(() => {
         this.dataSource.data = this.dataSource.data.filter(
