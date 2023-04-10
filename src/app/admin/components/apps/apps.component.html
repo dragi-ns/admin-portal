@@ -1,1 +1,56 @@
-<p>Lista aplikacija</p>
+<div class="top-controls">
+  <button mat-flat-button color="primary">Dodaj aplikaciju</button>
+</div>
+
+<div [hidden]="dataSource.data.length === 0">
+  <mat-table [dataSource]="dataSource" matSort>
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Ime</mat-header-cell>
+      <mat-cell *matCellDef="let app">{{ app.name }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="technologies">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        Tehnologije
+      </mat-header-cell>
+      <mat-cell *matCellDef="let app">{{
+        app.technologies | technologies
+      }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="createdAt">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        Datum kreiranja
+      </mat-header-cell>
+      <mat-cell *matCellDef="let app">{{
+        app.createdAt | date : "dd/MM/yyyy"
+      }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <mat-header-cell *matHeaderCellDef>Kontrole</mat-header-cell>
+      <mat-cell *matCellDef="let app">
+        <button mat-icon-button>
+          <mat-icon>edit</mat-icon>
+        </button>
+
+        <button mat-icon-button>
+          <mat-icon color="warn">delete</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayColumns"></mat-header-row>
+    <mat-row *matRowDef="let apps; columns: displayColumns"></mat-row>
+  </mat-table>
+  <mat-paginator
+    [pageSizeOptions]="[10, 25, 50]"
+    pageSize="10"
+    showFirstLastButtons
+  >
+  </mat-paginator>
+</div>
+
+<ng-container *ngIf="dataSource.data.length === 0">
+  <p class="no-apps">Nema aplikacija za prikaz.</p>
+</ng-container>

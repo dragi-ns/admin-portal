@@ -20,6 +20,7 @@ import { UsersComponent } from './components/users/users.component';
 import { AppsComponent } from './components/apps/apps.component';
 import { UserDialogComponent } from './components/user-dialog/user-dialog.component';
 import { DeleteDialogComponent } from './components/delete-dialog/delete-dialog.component';
+import { TechnologiesPipe } from './pipes/technologies.pipe';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { DeleteDialogComponent } from './components/delete-dialog/delete-dialog.
     AppsComponent,
     UserDialogComponent,
     DeleteDialogComponent,
+    TechnologiesPipe,
   ],
   imports: [
     CommonModule,

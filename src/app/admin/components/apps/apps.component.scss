@@ -1,0 +1,26 @@
+.top-controls {
+  text-align: right;
+  margin-bottom: 1rem;
+}
+
+.no-apps {
+  text-align: center;
+  font-weight: bold;
+}
+
+mat-cell:not(.mat-column-actions) {
+  overflow-x: auto;
+}
+
+.mat-column-name {
+  flex: 0 0 30%;
+}
+
+.mat-column-technologies {
+  flex: 0 0 35%;
+}
+
+.mat-column-createdAt,
+.mat-column-actions {
+  justify-content: center;
+}

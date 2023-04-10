@@ -148,5 +148,298 @@
       "passwordConfirm": "testing0",
       "id": 22
     }
+  ],
+  "technologies": [
+    {
+      "id": 1,
+      "name": "Angular"
+    },
+    {
+      "id": 2,
+      "name": "C#"
+    },
+    {
+      "id": 3,
+      "name": "Java"
+    },
+    {
+      "id": 4,
+      "name": "JavaScript"
+    },
+    {
+      "id": 5,
+      "name": "Python"
+    }
+  ],
+  "applications": [
+    {
+      "id": 1,
+      "name": "Project ABC",
+      "createdAt": "02/05/2022",
+      "technologies": [
+        {
+          "id": 1,
+          "name": "Angular"
+        },
+        {
+          "id": 3,
+          "name": "Java"
+        },
+        {
+          "id": 4,
+          "name": "JavaScript"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Project XYZ",
+      "createdAt": "12/01/2021",
+      "technologies": [
+        {
+          "id": 2,
+          "name": "C#"
+        },
+        {
+          "id": 4,
+          "name": "JavaScript"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Project QWE",
+      "createdAt": "05/14/2021",
+      "technologies": [
+        {
+          "id": 1,
+          "name": "Angular"
+        },
+        {
+          "id": 4,
+          "name": "JavaScript"
+        },
+        {
+          "id": 5,
+          "name": "Python"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Project MNO",
+      "createdAt": "09/19/2022",
+      "technologies": [
+        {
+          "id": 2,
+          "name": "C#"
+        },
+        {
+          "id": 3,
+          "name": "Java"
+        },
+        {
+          "id": 5,
+          "name": "Python"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "name": "Project PQR",
+      "createdAt": "07/08/2021",
+      "technologies": [
+        {
+          "id": 1,
+          "name": "Angular"
+        },
+        {
+          "id": 2,
+          "name": "C#"
+        },
+        {
+          "id": 4,
+          "name": "JavaScript"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "name": "Project DEF",
+      "createdAt": "04/23/2022",
+      "technologies": [
+        {
+          "id": 3,
+          "name": "Java"
+        },
+        {
+          "id": 4,
+          "name": "JavaScript"
+        },
+        {
+          "id": 5,
+          "name": "Python"
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "name": "Project GHI",
+      "createdAt": "01/11/2022",
+      "technologies": [
+        {
+          "id": 1,
+          "name": "Angular"
+        },
+        {
+          "id": 4,
+          "name": "JavaScript"
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "name": "Project JKL",
+      "createdAt": "11/28/2021",
+      "technologies": [
+        {
+          "id": 2,
+          "name": "C#"
+        },
+        {
+          "id": 3,
+          "name": "Java"
+        },
+        {
+          "id": 5,
+          "name": "Python"
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "name": "Project STU",
+      "createdAt": "09/03/2021",
+      "technologies": [
+        {
+          "id": 1,
+          "name": "Angular"
+        },
+        {
+          "id": 2,
+          "name": "C#"
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "name": "Project VWX",
+      "createdAt": "06/27/2022",
+      "technologies": [
+        {
+          "id": 3,
+          "name": "Java"
+        },
+        {
+          "id": 4,
+          "name": "JavaScript"
+        },
+        {
+          "id": 5,
+          "name": "Python"
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "name": "Project YZ",
+      "createdAt": "08/10/2021",
+      "technologies": [
+        {
+          "id": 2,
+          "name": "C#"
+        },
+        {
+          "id": 5,
+          "name": "Python"
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "name": "Project QAZ",
+      "createdAt": "05/22/2022",
+      "technologies": [
+        {
+          "id": 1,
+          "name": "Angular"
+        },
+        {
+          "id": 4,
+          "name": "JavaScript"
+        },
+        {
+          "id": 5,
+          "name": "Python"
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "name": "Project WSX",
+      "createdAt": "02/07/2022",
+      "technologies": [
+        {
+          "id": 1,
+          "name": "Angular"
+        },
+        {
+          "id": 2,
+          "name": "C#"
+        },
+        {
+          "id": 4,
+          "name": "JavaScript"
+        },
+        {
+          "id": 5,
+          "name": "Python"
+        }
+      ]
+    },
+    {
+      "id": 14,
+      "name": "Project EDC",
+      "createdAt": "10/30/2021",
+      "technologies": [
+        {
+          "id": 3,
+          "name": "Java"
+        },
+        {
+          "id": 4,
+          "name": "JavaScript"
+        },
+        {
+          "id": 5,
+          "name": "Python"
+        }
+      ]
+    },
+    {
+      "id": 15,
+      "name": "Project RFV",
+      "createdAt": "04/05/2022",
+      "technologies": [
+        {
+          "id": 1,
+          "name": "Angular"
+        },
+        {
+          "id": 3,
+          "name": "Java"
+        }
+      ]
+    }
   ]
 }
