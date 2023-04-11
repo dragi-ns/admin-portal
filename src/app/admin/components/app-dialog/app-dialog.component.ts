@@ -1,10 +1,11 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, EventEmitter, Inject, OnInit, Output } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 import { App } from '../../interfaces/app';
 import { Technology } from '../../interfaces/technology';
 import { AppsService } from '../../services/apps.service';
+import { User } from '../../interfaces/user';
 
 @Component({
   selector: 'app-app-dialog',
@@ -12,6 +13,8 @@ import { AppsService } from '../../services/apps.service';
   styleUrls: ['./app-dialog.component.scss'],
 })
 export class AppDialogComponent implements OnInit {
+  @Output() submitted = new EventEmitter<User>();
+
   loading = false;
   // Fixme: This array is fetched every time the user opens dialog
   technologiesSelect: Technology[] = [];
@@ -29,7 +32,10 @@ export class AppDialogComponent implements OnInit {
     if (!data) {
       this.addTechnology(undefined, false);
     } else {
-      this.appForm.patchValue(data);
+      this.appForm.patchValue({
+        ...data,
+        createdAt: new Date(data.createdAt),
+      });
       for (const technology of data.technologies) {
         this.addTechnology(technology, false);
       }
@@ -73,7 +79,8 @@ export class AppDialogComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.appForm.getRawValue());
+    const data = this.appForm.getRawValue();
+    this.submitted.emit({ ...data, createdAt: data.createdAt.getTime() });
   }
 
   private createTechnologyControl(value?: Technology) {

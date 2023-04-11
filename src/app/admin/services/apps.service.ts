@@ -4,7 +4,7 @@ import {
   HttpErrorResponse,
   HttpHeaders,
 } from '@angular/common/http';
-import { catchError, map, Observable, throwError } from 'rxjs';
+import { catchError, Observable, throwError } from 'rxjs';
 
 import { App } from '../interfaces/app';
 import { Technology } from '../interfaces/technology';
@@ -24,9 +24,8 @@ export class AppsService {
   constructor(private http: HttpClient) {}
 
   getApps(): Observable<App[]> {
-    return this.http
-      .get<App[]>(this.apiUrlApps)
-      .pipe(map(this.transformResponse), catchError(this.handleError));
+    const appsUrl = `${this.apiUrlApps}?_sort=id&_order=desc`;
+    return this.http.get<App[]>(appsUrl).pipe(catchError(this.handleError));
   }
 
   getTechnologies(): Observable<Technology[]> {
@@ -35,8 +34,24 @@ export class AppsService {
       .pipe(catchError(this.handleError));
   }
 
-  private transformResponse(apps: App[]): App[] {
-    return apps.map((app) => ({ ...app, createdAt: new Date(app.createdAt) }));
+  addApp(appData: App): Observable<App> {
+    return this.http
+      .post<App>(this.apiUrlApps, appData, this.httpOptions)
+      .pipe(catchError(this.handleError));
+  }
+
+  editApp(id: number, appData: App): Observable<App> {
+    const appUrl = `${this.apiUrlApps}/${id}`;
+    return this.http
+      .put<App>(appUrl, appData, this.httpOptions)
+      .pipe(catchError(this.handleError));
+  }
+
+  deleteApp(id: number): Observable<void> {
+    const appUrl = `${this.apiUrlApps}/${id}`;
+    return this.http
+      .delete<void>(appUrl, this.httpOptions)
+      .pipe(catchError(this.handleError));
   }
 
   // https://angular.io/guide/http#getting-error-details
