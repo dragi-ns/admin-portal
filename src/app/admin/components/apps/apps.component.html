@@ -1,5 +1,7 @@
 <div class="top-controls">
-  <button mat-flat-button color="primary">Dodaj aplikaciju</button>
+  <button mat-flat-button color="primary" (click)="openAppDialog()">
+    Dodaj aplikaciju
+  </button>
 </div>
 
 <div [hidden]="dataSource.data.length === 0">
@@ -30,7 +32,7 @@
     <ng-container matColumnDef="actions">
       <mat-header-cell *matHeaderCellDef>Kontrole</mat-header-cell>
       <mat-cell *matCellDef="let app">
-        <button mat-icon-button>
+        <button mat-icon-button (click)="openAppDialog(app)">
           <mat-icon>edit</mat-icon>
         </button>
 

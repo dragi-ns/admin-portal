@@ -1,0 +1,115 @@
+<h2 mat-dialog-title>{{ data ? "Ažuriraj" : "Dodaj" }} aplikaciju</h2>
+<mat-dialog-content class="mat-typography">
+  <form
+    id="appForm"
+    [formGroup]="appForm"
+    (ngSubmit)="onSubmit()"
+    fxLayout="column"
+    fxLayoutGap="15px"
+  >
+    <div fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="15px">
+      <mat-form-field appearance="outline" fxFlex="1 1 auto">
+        <mat-label>Naziv</mat-label>
+        <input
+          matInput
+          type="text"
+          id="name"
+          name="name"
+          placeholder="Projekat ABC"
+          formControlName="name"
+          required
+        />
+        <mat-error *ngIf="name?.errors?.['required']">
+          Naziv je obavezan.
+        </mat-error>
+        <mat-error *ngIf="name?.errors?.['maxlength']">
+          Naziv je predugačak (max: 32).
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" fxFlex="1 1 auto">
+        <mat-label>Odaberite datum</mat-label>
+        <input
+          matInput
+          [matDatepicker]="picker"
+          id="createdAt"
+          name="createdAt"
+          formControlName="createdAt"
+          placeholder="31/12/2023"
+        />
+        <mat-datepicker-toggle
+          matIconSuffix
+          [for]="picker"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <mat-error *ngIf="createdAt?.errors?.['required']">
+          Datum (dd/mm/yyyy) je obavezan.
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div
+      fxLayout="column"
+      fxLayoutGap="15px"
+      fxLayoutGap.lt-sm="30px"
+      formArrayName="technologies"
+    >
+      <div
+        class="technologies"
+        *ngFor="let _ of technologies.controls; index as i"
+        fxLayout="row"
+        fxLayout.lt-sm="column"
+        fxFlex="grow"
+        fxLayoutGap="15px"
+        fxLayoutGap.lt-sm="5px"
+      >
+        <mat-form-field appearance="outline" fxFlex="100%">
+          <mat-label>Odaberi tehnologiju</mat-label>
+          <mat-select [formControlName]="i" [compareWith]="compareWith">
+            <mat-option *ngFor="let tech of technologiesSelect" [value]="tech">
+              {{ tech.name }}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="technologies.controls[i]?.errors?.['required']">
+            Odaberi tehnologiju.
+          </mat-error>
+        </mat-form-field>
+        <div fxLayout="row" fxLayoutGap="15px">
+          <button
+            type="button"
+            mat-flat-button
+            color="primary"
+            fxFlex="grow"
+            [disabled]="technologies.controls.length > 10"
+            (click)="addTechnology()"
+          >
+            Dodaj
+          </button>
+          <button
+            type="button"
+            mat-flat-button
+            color="warn"
+            fxFlex="grow"
+            [disabled]="technologies.controls.length === 1"
+            (click)="removeTechnology(i)"
+          >
+            Obriši
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-stroked-button color="primary" [mat-dialog-close]="false">
+    Otkaži
+  </button>
+  <button
+    mat-flat-button
+    color="primary"
+    [disabled]="!appForm.valid || !appForm.dirty || loading"
+    form="appForm"
+  >
+    {{ loading ? "Učitavanje..." : data ? "Ažuriraj" : "Dodaj" }}
+  </button>
+</mat-dialog-actions>

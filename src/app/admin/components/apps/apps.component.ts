@@ -2,9 +2,11 @@ import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
+import { MatDialog } from '@angular/material/dialog';
 
 import { App } from '../../interfaces/app';
 import { AppsService } from '../../services/apps.service';
+import { AppDialogComponent } from '../app-dialog/app-dialog.component';
 
 @Component({
   selector: 'app-apps',
@@ -18,7 +20,7 @@ export class AppsComponent implements OnInit, AfterViewInit {
   displayColumns = ['name', 'technologies', 'createdAt', 'actions'];
   dataSource = new MatTableDataSource<App>();
 
-  constructor(private appsService: AppsService) {}
+  constructor(private appsService: AppsService, private dialog: MatDialog) {}
 
   ngOnInit() {
     this.appsService.getApps().subscribe((apps) => {
@@ -41,5 +43,11 @@ export class AppsComponent implements OnInit, AfterViewInit {
           return item[property];
       }
     };
+  }
+
+  openAppDialog(app?: App) {
+    const dialogRef = this.dialog.open(AppDialogComponent, {
+      data: app,
+    });
   }
 }

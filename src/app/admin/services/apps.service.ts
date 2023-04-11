@@ -7,12 +7,14 @@ import {
 import { catchError, map, Observable, throwError } from 'rxjs';
 
 import { App } from '../interfaces/app';
+import { Technology } from '../interfaces/technology';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AppsService {
-  private readonly apiUrl = 'http://localhost:3000/applications';
+  private readonly apiUrlApps = 'http://localhost:3000/applications';
+  private readonly apiUrlTech = 'http://localhost:3000/technologies';
   private readonly httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
@@ -23,8 +25,14 @@ export class AppsService {
 
   getApps(): Observable<App[]> {
     return this.http
-      .get<App[]>(this.apiUrl)
+      .get<App[]>(this.apiUrlApps)
       .pipe(map(this.transformResponse), catchError(this.handleError));
+  }
+
+  getTechnologies(): Observable<Technology[]> {
+    return this.http
+      .get<Technology[]>(this.apiUrlTech)
+      .pipe(catchError(this.handleError));
   }
 
   private transformResponse(apps: App[]): App[] {

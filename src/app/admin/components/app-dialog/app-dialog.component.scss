@@ -1,0 +1,34 @@
+:host {
+  display: block;
+  max-width: 550px;
+
+  h2 {
+    font-size: 1.5rem;
+    padding: 0.5rem 2rem 1rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+  }
+}
+
+form {
+  padding: 2.5rem 0.5rem 0;
+
+  .technologies button {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+}
+
+mat-error:not(:first-of-type) {
+  display: none;
+}
+
+mat-dialog-actions {
+  padding: 1rem 2rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.3);
+}
+
+@media screen and (min-width: 600px) {
+  .technologies button {
+    height: 56px;
+  }
+}

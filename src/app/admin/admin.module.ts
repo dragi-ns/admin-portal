@@ -11,6 +11,8 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatSelectModule } from '@angular/material/select';
 import { FlexModule } from '@angular/flex-layout';
 import { AvatarModule } from 'ngx-avatars';
 
@@ -21,6 +23,7 @@ import { AppsComponent } from './components/apps/apps.component';
 import { UserDialogComponent } from './components/user-dialog/user-dialog.component';
 import { DeleteDialogComponent } from './components/delete-dialog/delete-dialog.component';
 import { TechnologiesPipe } from './pipes/technologies.pipe';
+import { AppDialogComponent } from './components/app-dialog/app-dialog.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +33,7 @@ import { TechnologiesPipe } from './pipes/technologies.pipe';
     UserDialogComponent,
     DeleteDialogComponent,
     TechnologiesPipe,
+    AppDialogComponent,
   ],
   imports: [
     CommonModule,
@@ -47,6 +51,8 @@ import { TechnologiesPipe } from './pipes/technologies.pipe';
     MatPaginatorModule,
     MatSortModule,
     MatDialogModule,
+    MatDatepickerModule,
+    MatSelectModule,
   ],
 })
 export class AdminModule {}
