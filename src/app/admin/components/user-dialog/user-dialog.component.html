@@ -130,7 +130,6 @@
     color="primary"
     [disabled]="!userForm.valid || !userForm.dirty || loading"
     form="userForm"
-    cdkFocusInitial
   >
     {{ loading ? "Učitavanje..." : data ? "Ažuriraj" : "Dodaj" }}
   </button>

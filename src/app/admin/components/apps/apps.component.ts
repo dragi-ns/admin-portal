@@ -56,8 +56,7 @@ export class AppsComponent implements OnInit, AfterViewInit {
       autoFocus: '#name',
     });
 
-    dialogRef.componentInstance.submitted.subscribe((formData: App) => {
-      console.log(formData);
+    dialogRef.componentInstance.submitted.subscribe((formData) => {
       dialogRef.componentInstance.loading = true;
       if (!app) {
         this.addApp(formData)

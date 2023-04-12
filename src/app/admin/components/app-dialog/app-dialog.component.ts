@@ -5,7 +5,6 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { App } from '../../interfaces/app';
 import { Technology } from '../../interfaces/technology';
 import { AppsService } from '../../services/apps.service';
-import { User } from '../../interfaces/user';
 
 @Component({
   selector: 'app-app-dialog',
@@ -13,7 +12,7 @@ import { User } from '../../interfaces/user';
   styleUrls: ['./app-dialog.component.scss'],
 })
 export class AppDialogComponent implements OnInit {
-  @Output() submitted = new EventEmitter<User>();
+  @Output() submitted = new EventEmitter<App>();
 
   loading = false;
   // Fixme: This array is fetched every time the user opens dialog
@@ -62,6 +61,15 @@ export class AppDialogComponent implements OnInit {
 
   compareWith(app1: App, app2: App): boolean {
     return app1 && app2 ? app1.id === app2.id : app1 === app2;
+  }
+
+  techAlreadySelected(tech: Technology): boolean {
+    for (const selectedTech of this.technologies.controls) {
+      if (selectedTech.value.id === tech.id) {
+        return true;
+      }
+    }
+    return false;
   }
 
   addTechnology(technology?: Technology, markAsDirty: boolean = true) {
